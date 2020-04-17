@@ -42,6 +42,11 @@ class CastingAgencyAPITestCase(unittest.TestCase):
             'release_date': datetime.datetime(2020, 5, 7).strftime('%Y-%m-%d')
         }
 
+        self.new_cast = {
+            'actor_id': 1,
+            'movie_id': 2
+        }
+
         self.headers_assistant = {
             'Content-Type': 'application/json', 'Authorization': JWT_ASSISTANT}
 
@@ -260,8 +265,45 @@ class CastingAgencyAPITestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Resource not found')
 
     # Tests for Casting endpoints and RBAC pass tests
+    def test_get_cast(self):
+        """Pass GET/cast"""
+        res = self.client().get('/cast', headers=self.headers_assistant)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(len(data['cast']))
+
+    def test_404_requesting_movies(self):
+        """Fail GET/cast with malformed endpoint url"""
+        res = self.client().get('/cast/', headers=self.headers_assistant)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource not found')
+
+    def test_add_new_cast(self):
+        """Pass POST/cast to create a new casting pair"""
+        res = self.client().post('/cast', json=self.new_cast,
+                                 headers=self.headers_producer)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['cast'])
+
+    def test_400_if_no_body_parameters_provided_to_add_new_cast(self):
+        """Fail POST/cast by sending empty json data"""
+        res = self.client().post('/cast', json={}, headers=self.headers_producer)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Bad request')
 
     # RBAC fail tests
+
     def test_404_requesting_actors(self):
         """Fail GET/actors with missing Auth header"""
         res = self.client().get('/actors', headers={})

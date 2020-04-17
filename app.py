@@ -322,7 +322,7 @@ def create_app(test_config=None):
             if 'actor_id' not in data.keys() or 'movie_id' not in data.keys():
                 raise
             cast = Casting(actor_id=data['actor_id'],
-                           movie_id=data['movie_id'], actor_award=data['actor_award'])
+                           movie_id=data['movie_id'])
             cast.insert()
             return jsonify({"success": True, "cast": cast.format()}), 200
         except Exception:
