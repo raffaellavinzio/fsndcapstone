@@ -91,9 +91,9 @@ The API will return these error types when requests fail:
 
 ### Endpoint Library
 
-## GET endpoints
+#### GET endpoints
 
-# GET '/actors'
+##### GET '/actors'
 
 - Get the list of actors
 - Returns an object with key:value pairs for id, name string, age integer, gender string, and success, a boolean for the query execution status.
@@ -128,7 +128,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# GET '/movies'
+##### GET '/movies'
 
 - Get the list of movies
 - Returns an object with key:value pairs for id, title string, release_date string, and success, a boolean for the query execution status.
@@ -155,7 +155,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# GET '/cast'
+##### GET '/cast'
 
 - Get the list of casting pairs between actors and movies
 - Returns an object with key:value pairs for id, actor_id, movie_id, and success, a boolean for the query execution status.
@@ -192,7 +192,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# GET 'actors/{actor_id}/movies'
+##### GET 'actors/{actor_id}/movies'
 
 - Get the list of movies by actor_id
 - Returns an object with key:value pairs for actor_id, actor name, movies list, and success, a boolean for the query execution status.
@@ -213,7 +213,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# GET 'movies/{movie_id}/actors'
+##### GET 'movies/{movie_id}/actors'
 
 - Get the list of actors by movie_id
 - Returns an object with key:value pairs for movie_id, movie title, actors list, and success, a boolean for the query execution status.
@@ -235,9 +235,9 @@ The API will return these error types when requests fail:
 
 ```
 
-## POST endpoints
+#### POST endpoints
 
-# POST '/actors'
+##### POST '/actors'
 
 - Create a new actor
 - Returns an object with actor containing key:value pairs for id, name string, age integer, gender string, and success, a boolean for the query execution status.
@@ -258,7 +258,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# POST '/movies'
+##### POST '/movies'
 
 - Create a new movie
 - Returns an object with movie containing key:value pairs for id, title string, release_date string, and success, a boolean for the query execution status.
@@ -278,7 +278,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# POST '/cast'
+##### POST '/cast'
 
 - Create a new casting pair
 - Returns an object with cast containing key:value pairs for id, actor id, movie id, and success, a boolean for the query execution status.
@@ -298,9 +298,9 @@ The API will return these error types when requests fail:
 
 ```
 
-## PATCH endpoints
+#### PATCH endpoints
 
-# PATCH '/actors/{actor_id}'
+##### PATCH '/actors/{actor_id}'
 
 - Update an actor
 - Returns an object with actor containing key:value pairs for id, name string, age integer, gender string, and success, a boolean for the query execution status.
@@ -322,7 +322,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# PATCH '/movies'
+##### PATCH '/movies'
 
 - Update a movie
 - Returns an object with movie containing key:value pairs for id, title string, release_date string, and success, a boolean for the query execution status.
@@ -343,9 +343,9 @@ The API will return these error types when requests fail:
 
 ```
 
-## DELETE endpoints
+#### DELETE endpoints
 
-# DELETE '/actors/{actor_id}'
+##### DELETE '/actors/{actor_id}'
 
 - Delete an actor
 - Returns an object with the deleted id, and success, a boolean for the query execution status.
@@ -361,7 +361,7 @@ The API will return these error types when requests fail:
 
 ```
 
-# DELETE '/movies/{movie_id}'
+##### DELETE '/movies/{movie_id}'
 
 - Delete a movie
 - Returns an object with the deleted id, and success, a boolean for the query execution status.
