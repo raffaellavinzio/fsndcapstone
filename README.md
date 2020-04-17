@@ -1,6 +1,6 @@
 # Casting Agency API
 
-The Casting Agency API models a company that is responsible for creating movies and managing and assigning actors to those movies. The API endoints require specific authorization for access by three roles: Casting Assistant, Casting Director and Casting Producer.
+The Casting Agency API models a company that is responsible for creating movies and managing and assigning actors to those movies. The API endoints require specific authorization permissions for access by three roles defined with varying privileges: Casting Assistant, Casting Director and Casting Producer.
 
 ## Getting Started
 
@@ -32,10 +32,11 @@ pip install -r requirements.txt
 
 ## Database Setup for local testing
 
-With Postgres running, restore a database using the ca_test.pgsql file provided.
+With Postgres running, restore a database using the ca_test.pgsql file provided and load the environment variables from setup.sh.
 From terminal run the fllowing commands in sequence:
 
 ```bash
+source setup.sh
 dropdb ca_test && createdb ca_test
 psql ca_test < ca_test.pgsql
 python test_app.py
@@ -44,19 +45,29 @@ python test_app.py
 ## Running the server locally
 
 First ensure you are working using your created virtual environment.
-
-To run the server, execute:
+With Postgres running, to load the environment variables from setup.sh, seed the local database and run the server execute:
 
 ```bash
 source setup.sh
+dropdb ca && createdb ca
+psql ca < ca_test.pgsql
+flask run --reload
 ```
 
 ## Casting Agency API reference
 
 ### Getting Started
 
-- Base URL: At present this app can only be run locally and is not hosted as a base URL. The backend app is hosted at the default, http://127.0.0.1:5000/, which is set as a proxy in the frontend configuration.
-- Authentication:
+- Base URL:
+  Note that this app can also be run locally hosted at the default, http://127.0.0.1:5000/ as indicated above.
+
+- Authentication: an Auth0 api is used for authenticating the 3 roles with RBAC and Permissions in the Access Token as summarized in this table.
+
+| Role              | Permissions                                                                                                                                         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| casting assistant | `get:actors`, `get:movies`, `get:cast`                                                                                                              |
+| casting director  | `get:actors`, `get:movies`, `get:cast`, `post:actors`, `patch:actors`, `patch:movies`, `delete:actors`                                              |
+| casting producer  | `get:actors`, `get:movies`, `get:cast`, `post:actors`, `post:movies`, `patch:actors`, `patch:movies`, `delete:actors`, `delete:movies`, `post:cast` |
 
 ### Error Handling
 
