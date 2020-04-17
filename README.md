@@ -45,6 +45,7 @@ python test_app.py
 ## Running the server locally
 
 First ensure you are working using your created virtual environment.
+
 With Postgres running, to load the environment variables from setup.sh, seed the local database and run the server execute:
 
 ```bash
@@ -58,7 +59,8 @@ flask run --reload
 
 ### Getting Started
 
-- Base URL:
+- Base URL: `https://casting-agency-app.herokuapp.com/`
+
   Note that this app can also be run locally hosted at the default, http://127.0.0.1:5000/ as indicated above.
 
 - Authentication: an Auth0 api is used for authenticating the 3 roles with RBAC and Permissions in the Access Token as summarized in this table.
@@ -98,7 +100,7 @@ The API will return these error types when requests fail:
 - Get the list of actors
 - Returns an object with key:value pairs for id, name string, age integer, gender string, and success, a boolean for the query execution status.
 - Request parameters: None
-- Sample: `curl -H "Authorization: {JWT_get:actors}" {base_url}/actors`
+- Sample: `curl -H "Authorization: {JWT_get:actors}" https://casting-agency-app.herokuapp.com/actors`
 
 ```
 
@@ -133,7 +135,7 @@ The API will return these error types when requests fail:
 - Get the list of movies
 - Returns an object with key:value pairs for id, title string, release_date string, and success, a boolean for the query execution status.
 - Request parameters: None
-- Sample: `curl -H "Authorization: {JWT_get:movies}" {base_url}/movies`
+- Sample: `curl -H "Authorization: {JWT_get:movies}" https://casting-agency-app.herokuapp.com/movies`
 
 ```
 
@@ -160,7 +162,7 @@ The API will return these error types when requests fail:
 - Get the list of casting pairs between actors and movies
 - Returns an object with key:value pairs for id, actor_id, movie_id, and success, a boolean for the query execution status.
 - Request parameters: None
-- Sample: `curl -H "Authorization: {JWT_get:cast}" {base_url}/cast`
+- Sample: `curl -H "Authorization: {JWT_get:cast}" https://casting-agency-app.herokuapp.com/cast`
 
 ```
 
@@ -197,7 +199,7 @@ The API will return these error types when requests fail:
 - Get the list of movies by actor_id
 - Returns an object with key:value pairs for actor_id, actor name, movies list, and success, a boolean for the query execution status.
 - Request path parameters: actor id
-- Sample: `curl -H "Authorization: {JWT_get:actors}" {base_url}/actors/2/movies`
+- Sample: `curl -H "Authorization: {JWT_get:actors}" https://casting-agency-app.herokuapp.com/actors/2/movies`
 
 ```
 
@@ -218,7 +220,7 @@ The API will return these error types when requests fail:
 - Get the list of actors by movie_id
 - Returns an object with key:value pairs for movie_id, movie title, actors list, and success, a boolean for the query execution status.
 - Request path parameters: movie id
-- Sample: `curl -H "Authorization: {JWT_get:movies}" {base_url}/movies/1/actors`
+- Sample: `curl -H "Authorization: {JWT_get:movies}" https://casting-agency-app.herokuapp.com/movies/1/actors`
 
 ```
 
@@ -242,7 +244,7 @@ The API will return these error types when requests fail:
 - Create a new actor
 - Returns an object with actor containing key:value pairs for id, name string, age integer, gender string, and success, a boolean for the query execution status.
 - Request body parameters: key:value pairs for name, age, gender in json format
-- Sample: `curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWT_post:actors}" -d '{"name": "Robert Downey Jr.", "age": 55, "gender": "male" }' {base_url}/actors`
+- Sample: `curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWT_post:actors}" -d '{"name": "Robert Downey Jr.", "age": 55, "gender": "male" }' https://casting-agency-app.herokuapp.com/actors`
 
 ```
 
@@ -263,7 +265,7 @@ The API will return these error types when requests fail:
 - Create a new movie
 - Returns an object with movie containing key:value pairs for id, title string, release_date string, and success, a boolean for the query execution status.
 - Request body parameters: key:value pairs for title, release_date in json format
-- Sample: `curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWT_post:movies}" -d '{"title": "Sherlock Holmes 3", "release_date": "2021-12-22" }' {base_url}/movies`
+- Sample: `curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWT_post:movies}" -d '{"title": "Sherlock Holmes 3", "release_date": "2021-12-22" }' https://casting-agency-app.herokuapp.com/movies`
 
 ```
 
@@ -283,7 +285,7 @@ The API will return these error types when requests fail:
 - Create a new casting pair
 - Returns an object with cast containing key:value pairs for id, actor id, movie id, and success, a boolean for the query execution status.
 - Request body parameters: key:value pairs for actor id, movie id in json format
-- Sample: `curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWT_post:cast}" -d '{"actor_id": 4, "movie_id": 3}' {base_url}/cast`
+- Sample: `curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWT_post:cast}" -d '{"actor_id": 4, "movie_id": 3}' https://casting-agency-app.herokuapp.com/cast`
 
 ```
 
@@ -306,7 +308,7 @@ The API will return these error types when requests fail:
 - Returns an object with actor containing key:value pairs for id, name string, age integer, gender string, and success, a boolean for the query execution status.
 - Request body parameters: key:value pairs for any of name, age, gender to update in json format
 - Request path parameters: actor id
-- Sample: `curl -X PATCH -H "Content-Type: application/json" -H "Authorization: {JWT_patch:actors}" -d '{"name": "Roberta Downey Jr.", "age": 45, "gender": "female" }' {base_url}/actors/4`
+- Sample: `curl -X PATCH -H "Content-Type: application/json" -H "Authorization: {JWT_patch:actors}" -d '{"name": "Roberta Downey Jr.", "age": 45, "gender": "female" }' https://casting-agency-app.herokuapp.com/actors/4`
 
 ```
 
@@ -328,7 +330,7 @@ The API will return these error types when requests fail:
 - Returns an object with movie containing key:value pairs for id, title string, release_date string, and success, a boolean for the query execution status.
 - Request body parameters: key:value pairs for any of title, release_date to update in json format
 - Request path parameters: movie id
-- Sample: `curl -X PATCH -H "Content-Type: application/json" -H "Authorization: {JWT_post:movies}" -d '{"title": "Sherlock Holmes future", "release_date": "2025-12-22" }' {base_url}/movies/3`
+- Sample: `curl -X PATCH -H "Content-Type: application/json" -H "Authorization: {JWT_patch:movies}" -d '{"title": "Sherlock Holmes future", "release_date": "2025-12-22" }' https://casting-agency-app.herokuapp.com/movies/3`
 
 ```
 
@@ -350,7 +352,7 @@ The API will return these error types when requests fail:
 - Delete an actor
 - Returns an object with the deleted id, and success, a boolean for the query execution status.
 - Request path parameters: actor id
-- Sample: `curl -X DELETE -H "Authorization: {JWT_post:movies}" {base_url}/actors/4`
+- Sample: `curl -X DELETE -H "Authorization: {JWT_delete:movies}" https://casting-agency-app.herokuapp.com/actors/4`
 
 ```
 
@@ -366,7 +368,7 @@ The API will return these error types when requests fail:
 - Delete a movie
 - Returns an object with the deleted id, and success, a boolean for the query execution status.
 - Request path parameters: movie id
-- Sample: `curl -X DELETE -H "Authorization: {JWT_post:movies}" {base_url}/movies/3`
+- Sample: `curl -X DELETE -H "Authorization: {JWT_delete:movies}" https://casting-agency-app.herokuapp.com/movies/3`
 
 ```
 
